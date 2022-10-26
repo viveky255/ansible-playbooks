@@ -26,12 +26,12 @@ variable "BuildUser" {
   
 }
 
-resoruce "aws_instance" "testing" {
+resource "aws_instance" "testing" {
     ami = var.BuildAMI
     instance_type = var.BuildType
     key_name = var.BuildKey
 provisioner "local-exec" {
-    command="export ANSIBLE_HOST_KEY_CHECKING=False;sleep 30; ansible-playbook buildsetup.yml -i ${aws_instance.testing.private_ip}, -u ${var.BuildUser} --key-file /etc/ansible/${var.Buildkey}.pem"
+    command="export ANSIBLE_HOST_KEY_CHECKING=False;sleep 30; ansible-playbook buildsetup.yml -i ${aws_instance.testing.private_ip}, -u ${var.BuildUser} --key-file /etc/ansible/${var.BuildKey}.pem"
 
   }
 }
