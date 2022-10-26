@@ -5,10 +5,10 @@
   apt: name=docker.io state=present
 
 - name: Start Docker Service
-  Service: name=docker state=started
+  service: name=docker state=started
 
 - name: Permission for user
-  Service: name={{demouser}} group=docker
+  user: name={{demouser}} group=docker
 
 - name: Install Docker Compose
   apt: name=docker-compose state=present
